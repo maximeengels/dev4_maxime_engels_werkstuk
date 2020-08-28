@@ -38,21 +38,21 @@
   background-color: #e8edf4;
   color: var(--txt-color);
   transition: .3s;
+  border: 1px solid #e8edf4;
+  
 }
 
 .filter-btn:hover{
   cursor: pointer;
   padding: 5px 20px;
-}
-
-.inactive{
-  border: 1px solid #e8edf4!important;
-  background-color:#e8edf4!important;
-  color: var(--txt-color)!important;
-}
-
-.inactive:hover{
   border: 1px solid var(--accent-color)!important;
+}
+
+.active{
+  border: 1px solid var(--accent-color)!important;
+  color: var(--accent-color)!important;
+  background-color: #f5efee!important;
+  font-weight: 500;
 }
 
 /* CARD STYLING */

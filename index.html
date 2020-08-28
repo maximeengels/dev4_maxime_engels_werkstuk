@@ -39,27 +39,29 @@
     </section>
 
     <section id="videos">
-      <div class="container compact-txt filter-wrapper">
+      <div class="container compact-txt search-container">
         <label for="" class="search-label">Zoek</label>
-        <input type="search" placeholder="Zoek hier naar video's" id="search" class="search-bar">
+        <input id="search" type="search" placeholder="Zoek hier naar video's" class="search-bar">
+      </div>
+      <div class="container compact-txt">
         <div class="filter">
           <h6>Doelgroep</h6>
           <div class="tag-wrap">
-            <button onclick="filterCategory(this)" class="filter-btn inactive">VOLWASSENEN</button>
-            <button onclick="filterCategory(this)" class="filter-btn inactive">FAMILIE</button>
+            <button id="adult" class="filter-btn adult" value="volwassenen">VOLWASSENEN</button>
+            <button id="fam" class="filter-btn fam" value="familie">FAMILIE</button>
           </div>
           <h6>Genre</h6>
           <div class="tag-wrap genre">
-            <button class="filter-btn inactive">THEATER</button>
-            <button class="filter-btn inactive">LITERATUUR</button>
-            <button class="filter-btn inactive">MUZIEKTHEATER</button>
-            <button class="filter-btn inactive">DANS</button>
-            <button class="filter-btn inactive">COMEDY</button>
-            <button class="filter-btn inactive">FIGURENTHEATER</button>
-            <button class="filter-btn inactive">OPERA</button>
-            <button class="filter-btn inactive">MULTIDISCIPLINAIR</button>
-            <button class="filter-btn inactive">CONCERT</button>
-            <button class="filter-btn inactive">CIRCUS</button>
+            <button class="filter-btn theater">THEATER</button>
+            <button class="filter-btn">LITERATUUR</button>
+            <button class="filter-btn">MUZIEKTHEATER</button>
+            <button class="filter-btn">DANS</button>
+            <button class="filter-btn">COMEDY</button>
+            <button class="filter-btn">FIGURENTHEATER</button>
+            <button class="filter-btn">OPERA</button>
+            <button class="filter-btn">MULTIDISCIPLINAIR</button>
+            <button class="filter-btn">CONCERT</button>
+            <button class="filter-btn">CIRCUS</button>
           </div>
         </div>
       </div>
