@@ -1,40 +1,45 @@
+(function() {
 
 let query;
+asyncCall();
 
-fetch('data/entries.json')
-  .then(response => response.json())
-  .then(data => {
-    const cards = document.getElementById('cards');
-    data.items.map( item => {
-    cards.insertAdjacentHTML('afterbegin', 
-      `<div class="card-container ${item.category}">
-        <a href="/" class="video-card">
-          <div class="video-card-img">
-            <img src="${item.thumbnail.url}" alt="">
-            <div class="inner">  
-              <div class="video-card-img-tag">
-                <span class="tagline">${item['genre-v2']}</span>
+async function asyncCall() {
+  getData();
+}
+
+async function getData() {
+  await fetch('data/entries.json')
+    .then(response => response.json())
+    .then(data => {
+      const cards = document.getElementById('cards');
+      data.items.map( item => {
+      cards.insertAdjacentHTML('afterbegin', 
+        `<div class="card-container ${item.category}">
+          <a href="/" class="video-card">
+            <div class="video-card-img">
+              <img src="${item.thumbnail.url}" alt="">
+              <div class="inner">  
+                <div class="video-card-img-tag">
+                  <span class="tagline">${item['genre-v2']}</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="video-card-content">
-            <h3 class="name">${item.name}</h3>
-            <span class="discription company">${item.excerpt}</span>
-            <span class="discription location">${filterEmptyData(item['recorded-at'])}</span>
-            <span class="duration">${filterEmptyData(item['video-length'])}</span>
-          </div>
-        </a>
-      </div>`
-    )}
-  );
-});
+            <div class="video-card-content">
+              <h3 class="name">${item.name}</h3>
+              <span class="discription company">${item.excerpt}</span>
+              <span class="discription location">${filterEmptyData(item['recorded-at'])}</span>
+              <span class="duration">${filterEmptyData(item['video-length'])}</span>
+            </div>
+          </a>
+        </div>`
+      )}
+    );
+  });
+}
 
-
-document.getElementById('search').onkeyup = function(){
+document.getElementById('search').onkeyup = async function(){
   query = this.value;
-  console.log(query);
-  
-  addSearchCards();
+  await addSearchCards();
 };
 
 function addSearchCards() {
@@ -42,31 +47,34 @@ function addSearchCards() {
   .then(response => response.json())
   .then(data => {
     const searchcards = document.querySelector('.search-container');
-    data.items.filter(filterQuery)
-    data.items.map( item => {
-      searchcards.insertAdjacentHTML('beforeend', 
-      `<div class="search-card-container">
-        <a href="/" class="search-card video-card">
-          <div class="search-video-card-img">
-            <img src="${item.thumbnail.url}" alt="">
-          </div>
-          <div class="video-card-content">
-            <h3 class="name">${item.name}</h3>
-            <span class="discription company">${item.excerpt}</span>
-          </div>
-        </a>
-      </div>`
-      )}
-    );
+    if(query !== ""){
+      searchcards.innerHTML = "";
+      let arrayItems = data.items.filter(filterQuery);
+      arrayItems.map( item => {
+        searchcards.insertAdjacentHTML('afterbegin', 
+        `<div class="search-card-container">
+          <a href="/" class="search-card video-card">
+            <div class="search-video-card-img">
+              <img src="${item.thumbnail.url}" alt="">
+            </div>
+            <div class="video-card-content">
+              <h3 class="name">${item.name}</h3>
+              <span class="discription company">${item.excerpt}</span>
+            </div>
+          </a>
+        </div>`
+        )}
+      );
+    } else {
+      searchcards.innerHTML = "";
+    }
   });
 }
 
 function filterQuery(item){
-  if ('name' in item && item.name == query) {
-    return true;
-  } else {
-    return false;
-  }
+    //regex checks if 
+    const regex = new RegExp(`^${query}`, 'gi');
+    return item.name.match(regex);
 }
 
 function filterEmptyData(data){
@@ -84,14 +92,8 @@ function clickEvent(id){
   document.querySelectorAll('.familie').style.display = "none";
 }
 
-
-  document.querySelector('button').onclick = function () {
-    clickEvent(this.id);
-    // this.classList.toggle("active");
-    // document.querySelector('.familie').style.display = "none";
+document.querySelector('button').onclick = async function () {
+  clickEvent(this.id);
 }
 
-//   document.querySelector('.fam').onclick = function () {
-//     this.classList.toggle("active");
-//     document.querySelector('.volwassenen').style.display = "none";
-// }
+})();

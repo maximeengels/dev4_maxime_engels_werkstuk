@@ -17,17 +17,28 @@
   width: 100%;
   justify-content: flex-start;
   margin-bottom: 24px;
+  animation: appear .5s;
+}
+
+@keyframes appear {
+  from { 
+    opacity: 0;
+  }
 }
 
 .search-card{
   display: flex;
   flex-direction: row!important;
-  height: 200px!important;
+  height: 150px!important;
   border-radius: 10px;
   background-color: #e8edf4;
   transition: box-shadow .15s ease-in,transform .15s ease-in, color .15s;
   text-decoration: none;
   cursor: pointer;
+}
+
+.search-card:hover{
+  transform: translateY(-6px)!important;
 }
 
 .search-video-card-img{
