@@ -42,23 +42,17 @@ function addSearchCards() {
   .then(response => response.json())
   .then(data => {
     const searchcards = document.querySelector('.search-container');
-    data.items.filter(filterQuery).map( item => {
+    data.items.filter(filterQuery)
+    data.items.map( item => {
       searchcards.insertAdjacentHTML('beforeend', 
-      `<div class="card-container ${item.category}">
-        <a href="/" class="video-card">
-          <div class="video-card-img">
+      `<div class="search-card-container">
+        <a href="/" class="search-card video-card">
+          <div class="search-video-card-img">
             <img src="${item.thumbnail.url}" alt="">
-            <div class="inner">  
-              <div class="video-card-img-tag">
-                <span class="tagline">${item['genre-v2']}</span>
-              </div>
-            </div>
           </div>
           <div class="video-card-content">
             <h3 class="name">${item.name}</h3>
             <span class="discription company">${item.excerpt}</span>
-            <span class="discription location">${filterEmptyData(item['recorded-at'])}</span>
-            <span class="duration">${filterEmptyData(item['video-length'])}</span>
           </div>
         </a>
       </div>`

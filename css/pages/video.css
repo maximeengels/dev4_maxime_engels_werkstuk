@@ -1,18 +1,4 @@
 
-.search-label{
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-.search-bar{
-  border: 0;
-  height: 60px;
-  margin-bottom: 24px;
-  padding: 10px 20px;
-  background-color: rgb(232, 237, 244);
-  border-radius: 10px;
-}
-
 .tag-wrap{
   display: flex;
   flex-flow: row wrap;

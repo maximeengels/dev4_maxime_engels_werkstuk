@@ -4,9 +4,9 @@
 
 /* ================== Typography ==================== */
 @import url(css/misc/typo.css);
+@import url(css/misc/search.css);
 
 /* ================== Pages ==================== */
 @import url(css/pages/home.css);
 @import url(css/pages/detail.css);
-@import url(css/pages/about.css);
 @import url(css/pages/video.css);
