@@ -1,3 +1,4 @@
+// doc ready function
 (async function () {
 
   const searchcards = document.querySelector('.search-container');
