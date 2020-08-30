@@ -1,5 +1,4 @@
-# Development 4: Opdracht Werkstuk
-# Maxime Engels
+# Development 4: Opdracht Werkstuk - Maxime Engels
 
 ## Functional Analysis
 Podiumaanhuis.be has a couple of functions that are mandatory for the site to work which are the filter function and a search bar function using a query to live search and display cards.
