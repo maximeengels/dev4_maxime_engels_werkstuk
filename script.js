@@ -96,6 +96,7 @@
       return data;
     }
   }
+
 // filters genre per item in array using item and filterArray in parameters
   const filterGenre = (tag, filterArray) => {
     for (item of filterArray) {
