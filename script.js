@@ -5,7 +5,6 @@
   const cards = document.getElementById('cards');
 
   let query;
-  let arrayItems;
   let filterArray;
   let entries;
 // fetches json file and activates function which passes entries through
@@ -32,8 +31,8 @@
             </div>
             <div class="video-card-content">
               <h3 class="name">${item.name}</h3>
-              <span class="discription company">${item.excerpt}</span>
-              <span class="discription location">${filterEmptyData(item['recorded-at'])}</span>
+              <span class="description company">${item.excerpt}</span>
+              <span class="description location">${filterEmptyData(item['recorded-at'])}</span>
               <span class="duration">${filterEmptyData(item['video-length'])}</span>
             </div>
           </a>
@@ -62,7 +61,7 @@
             </div>
             <div class="video-card-content">
               <h3 class="name">${item.name}</h3>
-              <span class="discription company">${item.excerpt}</span>
+              <span class="description company">${item.excerpt}</span>
             </div>
           </a>
         </div>`
@@ -96,18 +95,18 @@
     }
   }
 
-// filters genre per item in array using item and filterArray in parameters
-  const filterGenre = (tag, filterArray) => {
-    for (item of filterArray) {
+// filters genre per item in array using item and tagArray in parameters
+  const filterGenre = (tag, tagArray) => {
+    for (item of tagArray) {
       if (tag['genre-v2'] == item.id) {
         return true;
       }
     }
   }
 
-// filters category per item in array using item and filterArray in parameters
-  const filterCategory = (tag, filterArray) => {
-    for (item of filterArray) {
+// filters category per item in array using item and tagArray in parameters
+  const filterCategory = (tag, tagArray) => {
+    for (item of tagArray) {
       if (tag['category'] == item.id) {
         return true;
       }
@@ -115,8 +114,7 @@
   }
 
 // toggles active class of filter buttons and passes array if all active ones
-  for (button of filters) {
-    button.onclick = function () {
+  for (button of filters) { button.onclick = function () {
       this.classList.toggle("active");
       const activeFilters = document.querySelectorAll('.active');
       tagFilter(activeFilters);
