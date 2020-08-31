@@ -1,12 +1,8 @@
 (async function () {
 
-  const searchcards = document.querySelector('.search-container');
-  const filters = document.querySelectorAll('.filter-btn');
-  const cards = document.getElementById('cards');
-
   let query;
-  let filterArray;
   let entries;
+
 // fetches json file and activates function which passes entries through
   await fetch('data/entries.json')
     .then(response => response.json())
@@ -17,6 +13,7 @@
 
 // function adds item cards to the page using array parameter
   async function addCards(data) {
+    const cards = document.getElementById('cards');
     data.map(item => {
       cards.insertAdjacentHTML('afterbegin',
         `<div class="card-container ${item.category}">
@@ -49,6 +46,7 @@
 
 // function adds cards that match typed search query
   function addSearchCards() {
+    const searchcards = document.querySelector('.search-container');
     if (query !== "") {
       searchcards.innerHTML = "";
       arrayItems = entries.filter(filterQuery);
@@ -96,18 +94,21 @@
     }
   }
 
-// toggles active class of filter buttons and passes array if all active ones
+// toggles active class of filter buttons and passes array of all active ones
+  const filters = document.querySelectorAll('.filter-btn');
   for (button of filters) { button.onclick = function () {
       this.classList.toggle("active");
       const activeFilters = document.querySelectorAll('.active');
-      tagFilter(activeFilters);
+      let filterArray;
+      tagFilter(activeFilters, filterArray);
     }
   }
 
 // filters entries using if else statements and .filter()
 // which activates functions that check which tags are active
-  const tagFilter = (activeFilters) => {
+  const tagFilter = (activeFilters, filterArray) => {
     filterArray = [];
+    const cards = document.getElementById('cards');
     let genreArray = entries.filter(item => filterGenre(item, activeFilters));
     let categoryArray = entries.filter(item => filterCategory(item, activeFilters));
 
@@ -127,7 +128,6 @@
       addCards(genreArray.filter(item => filterCategory(item, activeFilters)));
     }
   }
-
   
 // filters genre per item in array using tag and tagArray in parameters
 const filterGenre = (tag, tagArray) => {
