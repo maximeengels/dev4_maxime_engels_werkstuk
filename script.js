@@ -86,30 +86,13 @@
     const regex = new RegExp(`^${query}`, 'gi');
     return item.name.match(regex);
   }
+
 // filters undefined data from json file
   function filterEmptyData(data) {
     if (data == undefined) {
       return "<br>";
     } else {
       return data;
-    }
-  }
-
-// filters genre per item in array using item and tagArray in parameters
-  const filterGenre = (tag, tagArray) => {
-    for (item of tagArray) {
-      if (tag['genre-v2'] == item.id) {
-        return true;
-      }
-    }
-  }
-
-// filters category per item in array using item and tagArray in parameters
-  const filterCategory = (tag, tagArray) => {
-    for (item of tagArray) {
-      if (tag['category'] == item.id) {
-        return true;
-      }
     }
   }
 
@@ -144,5 +127,24 @@
       addCards(genreArray.filter(item => filterCategory(item, activeFilters)));
     }
   }
+
+  
+// filters genre per item in array using tag and tagArray in parameters
+const filterGenre = (tag, tagArray) => {
+  for (item of tagArray) {
+    if (tag['genre-v2'] == item.id) {
+      return true;
+    }
+  }
+}
+
+// filters category per item in array using tag and tagArray in parameters
+const filterCategory = (tag, tagArray) => {
+  for (item of tagArray) {
+    if (tag['category'] == item.id) {
+      return true;
+    }
+  }
+}
 
 })();
