@@ -98,8 +98,6 @@
 
 // filters genre per item in array using item and filterArray in parameters
   const filterGenre = (tag, filterArray) => {
-    console.log(filterArray);
-    // console.log(tag);
     for (item of filterArray) {
       if (tag['genre-v2'] == item.id) {
         return true;
@@ -121,12 +119,11 @@
     button.onclick = function () {
       this.classList.toggle("active");
       const activeFilters = document.querySelectorAll('.active');
-      console.log(activeFilters);
       tagFilter(activeFilters);
     }
   }
 
-// filters data or entries using if else statements and .filter()
+// filters entries using if else statements and .filter()
 // which activates functions that check which tags are active
   const tagFilter = (activeFilters) => {
     filterArray = [];
