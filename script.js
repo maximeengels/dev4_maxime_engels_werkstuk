@@ -1,4 +1,3 @@
-// doc ready function
 (async function () {
 
   const searchcards = document.querySelector('.search-container');
@@ -99,16 +98,19 @@
 
 // filters genre per item in array using item and filterArray in parameters
   const filterGenre = (tag, filterArray) => {
+    console.log(filterArray);
+    // console.log(tag);
     for (item of filterArray) {
-      if (tag['genre-v2'] == item) {
+      if (tag['genre-v2'] == item.id) {
         return true;
       }
     }
   }
+
 // filters category per item in array using item and filterArray in parameters
   const filterCategory = (tag, filterArray) => {
     for (item of filterArray) {
-      if (tag['category'] == item) {
+      if (tag['category'] == item.id) {
         return true;
       }
     }
@@ -119,6 +121,7 @@
     button.onclick = function () {
       this.classList.toggle("active");
       const activeFilters = document.querySelectorAll('.active');
+      console.log(activeFilters);
       tagFilter(activeFilters);
     }
   }
@@ -127,8 +130,8 @@
 // which activates functions that check which tags are active
   const tagFilter = (activeFilters) => {
     filterArray = [];
-    let genreArray = entries.filter(item => filterGenre(item, filterArray));
-    let categoryArray = entries.filter(item => filterCategory(item, filterArray));
+    let genreArray = entries.filter(item => filterGenre(item, activeFilters));
+    let categoryArray = entries.filter(item => filterCategory(item, activeFilters));
 
     for (filterName of activeFilters) {
       filterArray.push(filterName.id);
@@ -143,7 +146,7 @@
     } else if (categoryArray == '') {
       addCards(genreArray);
     } else {
-      addCards(genreArray.filter(item => filterCategory(item, filterArray)));
+      addCards(genreArray.filter(item => filterCategory(item, activeFilters)));
     }
   }
 
