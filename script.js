@@ -14,7 +14,7 @@
 // function adds item cards to the page using array parameter
   async function addCards(data) {
     const cards = document.getElementById('cards');
-    data.map(item => {
+    await data.map(item => {
       cards.insertAdjacentHTML('afterbegin',
         `<div class="card-container ${item.category}">
           <a href="/" class="video-card">
@@ -41,16 +41,16 @@
 // key-up event triggers when typing in search bar
   document.getElementById('search').onkeyup = async function () {
     query = this.value;
-    await addSearchCards();
+    addSearchCards(query);
   }
 
 // function adds cards that match typed search query
-  function addSearchCards() {
+  async function addSearchCards(query) {
     const searchcards = document.querySelector('.search-container');
     if (query !== "") {
       searchcards.innerHTML = "";
       arrayItems = entries.filter(filterQuery);
-      arrayItems.map(item => {
+      await arrayItems.map(item => {
         searchcards.insertAdjacentHTML('afterbegin',
           `<div class="search-card-container">
           <a href="/" class="search-card video-card">
