@@ -10,6 +10,11 @@ When clicking multiple tags the site filters both out of the possible items they
 - Making the search bar using a query that gets checked using a regular expression to negate case sensitivity as well as search for the name starting with the query instead of searching for a random letter in the name.
 - Next trying to figure out how to use the .filter() function in JS to filter the data array according to all the tags the are currently active.
  
+ ## Tests
+I wrote 3 tests (1 as dummy test and 2 real functions) in the test.js file.
+To run the test, use following instructions:
+- npm install
+- npm run test
 
 ## Resources
 
